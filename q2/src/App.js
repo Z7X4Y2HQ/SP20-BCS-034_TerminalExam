@@ -15,10 +15,12 @@ const App = () => {
   useEffect(getNotes, [notes]);
 
   const completeTodo = (id) => {
+    console.log(notes);
+
     const url = "http://localhost:3001/notes/";
     const note = notes.find((e) => e.id === id);
     const changeNote = { ...note, status: !note.status };
-    axios.put(`${url}/${id}`).then((response) => {
+    axios.put(`${url}/${id}`).then((changeNote) => {
       setNotes(notes.map((e) => (e.id !== id ? e : changeNote)));
     });
   };
